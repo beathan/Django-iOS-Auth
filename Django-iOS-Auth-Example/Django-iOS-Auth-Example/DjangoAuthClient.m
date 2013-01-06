@@ -99,7 +99,6 @@ NSString *const kDjangoAuthClientLoginFailureInactiveAccount = @"kDjangoAuthClie
             
             NSString *authString = [NSString stringWithFormat:@"username=%@;password=%@;csrfmiddlewaretoken=%@;", _username, _password, csrfCookie.value, nil];
             [request setHTTPBody:[authString dataUsingEncoding:NSUTF8StringEncoding]];
-            [request setValue:[resultObject.responseHeaders valueForKey:@"Set-Cookie"] forHTTPHeaderField:@"Cookie"];
 
             [self makeLoginRequest:request];
         }
