@@ -55,17 +55,6 @@ NSString *const kDjangoAuthClientLoginFailureInactiveAccount = @"kDjangoAuthClie
     }
 }
 
-- (DjangoAuthLoginResultObject *)createLoginResultObject:(NSURLResponse *)response {
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    
-    DjangoAuthLoginResultObject *resultObject = [[DjangoAuthLoginResultObject alloc] init];
-    resultObject.responseHeaders = [httpResponse allHeaderFields];
-    resultObject.serverResponse = response;
-    resultObject.statusCode = [httpResponse statusCode];
-    
-    return resultObject;
-}
-
 #pragma mark - NSURLConnectionDelegate Methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -73,7 +62,7 @@ NSString *const kDjangoAuthClientLoginFailureInactiveAccount = @"kDjangoAuthClie
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    DjangoAuthLoginResultObject *resultObject = [self createLoginResultObject:response];
+    DjangoAuthLoginResultObject *resultObject = [DjangoAuthLoginResultObject loginResultObjectFromResponse:response];
     
     if (resultObject.statusCode == 200) {
         // We're logged in and good to go

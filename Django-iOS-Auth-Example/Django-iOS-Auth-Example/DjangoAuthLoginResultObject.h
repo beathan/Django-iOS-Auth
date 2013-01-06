@@ -15,4 +15,6 @@
 @property (nonatomic, strong) NSURLResponse *serverResponse;
 @property (nonatomic, assign) NSInteger statusCode;
 
++ (DjangoAuthLoginResultObject *)loginResultObjectFromResponse:(NSURLResponse *)response;
+
 @end
