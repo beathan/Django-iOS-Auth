@@ -16,7 +16,7 @@ Open Finder and navigate to the Django-iOS-Auth directory. From there, open the 
 
 # Notes
 
-### Django
+## Django
 
 The Django project includes a sample app that contains a [login view](https://github.com/beathan/Django-iOS-Auth/blob/master/SampleDjangoProject/SampleDjangoProject/sample/views.py#L7) that handles logging in the user and supplying HTTP status codes in response.
 
@@ -29,7 +29,7 @@ The view will return one of the following 4 responses:
 
 The view will also render a [sample template](https://github.com/beathan/Django-iOS-Auth/blob/master/SampleDjangoProject/SampleDjangoProject/sample/templates/sample/login.html) for logging in via a web browser.
 
-### iOS
+## iOS
 
 `DjangoAuthClient.h` provides two mechanisms for getting feedback on the success or failure of login attempts: notifications and a delegate protocol with two optional methods for login success or failure. Either mechanism will provide the consumer with a `DjangoAuthLoginResultObject`, which is essentially just a convenience class for storing response data and optionally setting a login failure reason. Two constants are defined to give insight into why the login attempt failed: `kDjangoAuthClientLoginFailureInvalidCredentials` and `kDjangoAuthClientLoginFailureInactiveAccount`.
 
