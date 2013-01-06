@@ -73,7 +73,7 @@ NSString *const kDjangoAuthClientLoginFailureInactiveAccount = @"kDjangoAuthClie
         [[NSNotificationCenter defaultCenter] postNotificationName:DjangoAuthClientDidLoginSuccessfully object:resultObject];
     }
     else if (resultObject.statusCode == 401) {
-        // Cancel connection since we now need to send the login POST request
+        // We're not authorized, so cancel the connection since we need to send the login POST request
         [connection cancel];
         
         // Check to see if we've already made an attempt to log in and failed
@@ -87,6 +87,8 @@ NSString *const kDjangoAuthClientLoginFailureInactiveAccount = @"kDjangoAuthClie
         else {
             // Initial login attempt
             NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:resultObject.responseHeaders forURL:self.requestURL];
+            
+            // Django defaults to CSRF protection, so we need to get the token to send back in the request
             NSHTTPCookie *csrfCookie;
             for (NSHTTPCookie *cookie in cookies) {
                 if ([cookie.name isEqualToString:@"csrftoken"]) {

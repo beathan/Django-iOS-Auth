@@ -24,6 +24,7 @@
 }
 
 - (BOOL)validateInputs {
+    // Ensure that something has been entered in the username and password fields
     if (![_username.text isEqualToString:@""] && ![_password.text isEqualToString:@""]) {
         return YES;
     }
@@ -43,6 +44,8 @@
         _loginMessage.text = @"Username and Password are required to log in.";
     }
 }
+
+#pragma mark - DjangoAuthClientDelegate methods
 
 - (void)loginSuccessful:(DjangoAuthLoginResultObject *)result {
     _loginMessage.text = @"Login successful";
