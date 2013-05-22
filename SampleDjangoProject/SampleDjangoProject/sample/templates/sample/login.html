@@ -6,7 +6,7 @@
   </head>
   <body>
     {% if not request.user.is_authenticated %}
-    <form method="post" action="{% url auth_login %}">
+    <form method="post" action="{% url 'auth_login' %}">
       {% csrf_token %}
       <p>
 	<label for="id_username">Username:</label>
@@ -17,7 +17,7 @@
 	<input type="password" name="password" id="id_password" />
       </p>
       <input type="submit" value="Log in" />
-      <input type="hidden" name="next" value="{% url auth_login %}" />
+      <input type="hidden" name="next" value="{% url 'auth_login' %}" />
     </form>
     {% else %}
     <p>You are already logged in!</p>
